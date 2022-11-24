@@ -12,7 +12,7 @@ export default function Home() {
       <div className="alignDiv">
         <Cards />
       </div>
-      <Footer text="Home" />
+      <Footer />
     </HomePai>
   );
 }
