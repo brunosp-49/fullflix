@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 
 export const Grid = styled.div`
@@ -12,7 +13,7 @@ export const Grid = styled.div`
     padding: 10vh 0;
 `
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(Link)`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,6 +22,8 @@ export const CardContainer = styled.div`
     width: 100%;
     border: 1px solid #fff;
     border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
     :hover{
         cursor: pointer;
         border: 1px solid #e50914;

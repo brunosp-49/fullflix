@@ -1,25 +1,44 @@
 import { Footer } from "../../components/footer/Footer";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Grid, MainContainer, RigthSide } from "./DetailStyle";
 import { Header } from "../../components/header/Header";
+import { useDispatch, useSelector } from "react-redux";
+import { goToIndex } from "../../assets/redux/counterSlice";
+import { Loading } from "../../components/loading/Loading";
 
-export  default function Details() {
+export default function Details() {
+  const state = useSelector((state) => state.page.value2);
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-  return  (
+  return (
     <MainContainer>
-      <Header/>
+      <Header />
       <Grid>
-        <img src={`https://image.tmdb.org/t/p/w500/`} alt="" onClick={()=>{console.log()}}/>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${state.data.poster_path}`}
+          alt=""
+        />
         <RigthSide>
-          <p><b>Titulo:</b> </p>
-          <p><b>Sinopse:</b> </p>
-          <p><b>Data de lançamento:</b></p>
-          <p><b>Nota:</b> </p>
-          <Link to="/" onClick={()=>{}}>Voltar para a home</Link>
+          <p>
+            <b>Titulo:</b> {state.data.title}
+          </p>
+          <p>
+            <b>Sinopse:</b> {state.data.overview}
+          </p>
+          <p>
+            <b>Data de lançamento:</b> {state.data.release_date}
+          </p>
+          <p>
+            <b>Nota:</b> {state.data.vote_average}
+          </p>
+          <Link to="/" onClick={() => dispatch(goToIndex())}>
+            Voltar para a home
+          </Link>
         </RigthSide>
       </Grid>
-      <Footer text="Detalhes"/>
-      </MainContainer>
-      );
+      <Footer text="Detalhes" />
+    </MainContainer>
+  );
 }
